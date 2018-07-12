@@ -11,7 +11,7 @@ env.AWS_ACCESS_KEY_ID = AWS_ACCESS_KEY_ID
 env.AWS_SECRET_ACCESS_KEY = AWS_SECRET_ACCESS_KEY
 
 node {
-  env.PATH += ":/opt/terraform_0.7.13/"
+  // env.PATH += ":/opt/terraform_0.7.13/"
 
   stage ('Checkout') {
     checkout scm
@@ -34,10 +34,10 @@ node {
     sh 'terraform show'
   }
 
-  stage ('Notification') {
-    mail from: "jenkins@mycompany.com",
-         to: "devopsteam@mycompany.com",
-         subject: "Terraform build complete",
-         body: "Jenkins job ${env.JOB_NAME} - build ${env.BUILD_NUMBER} complete"
-  }
+  // stage ('Notification') {
+  //   mail from: "jenkins@mycompany.com",
+  //        to: "devopsteam@mycompany.com",
+  //        subject: "Terraform build complete",
+  //        body: "Jenkins job ${env.JOB_NAME} - build ${env.BUILD_NUMBER} complete"
+  // }
 }
