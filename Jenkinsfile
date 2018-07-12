@@ -24,20 +24,20 @@ node {
 
   // Optional wait for approval
 
-  // stage ('Terraform Apply') {
-  //   sh 'terraform apply -no-color create.tfplan'
-  // }
-
-  // stage ('Post Run Tests') {
-  //   echo "Insert your infrastructure test of choice and/or application validation here."
-  //   sleep 2
-  //   sh 'terraform show'
-  // }
-
-  stage ('Notification') {
-    mail from: "saicosan@gmail.com",
-         to: "saicosan@gmail.com",
-         subject: "Terraform build complete",
-         body: "Jenkins job  - build  complete"
+  stage ('Terraform Apply') {
+    sh 'terraform apply -no-color create.tfplan'
   }
+
+  stage ('Post Run Tests') {
+    echo "Insert your infrastructure test of choice and/or application validation here."
+    sleep 2
+    sh 'terraform show'
+  }
+
+  // stage ('Notification') {
+  //   mail from: "saicosan@gmail.com",
+  //        to: "saicosan@gmail.com",
+  //        subject: "Terraform build complete",
+  //        body: "Jenkins job  - build  complete"
+  // }
 }
