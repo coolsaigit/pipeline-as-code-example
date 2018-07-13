@@ -20,8 +20,8 @@ node {
 
   stage ('Terraform Plan') {
     sh 'terraform init'
-    nam = sh 'terraform plan -no-color -out=create.tfplan | grep "name:" | cut -d":" -f2 | awk '{$1=$1};1''
-    print nam
+    def nam = sh 'terraform plan -no-color -out=create.tfplan | grep "name:" | cut -d":" -f2 | awk '{$1=$1};1''
+    println vpcResult
   }
 
   // Optional wait for approval
