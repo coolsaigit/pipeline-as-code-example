@@ -19,20 +19,21 @@ node {
 
   stage ('Terraform Plan') {
     sh 'terraform init'
-    sh 'terraform plan -no-color -out=create.tfplan'
+    nam = sh 'terraform plan -no-color -out=create.tfplan | grep "name:" | cut -d":" -f2 | awk '{$1=$1};1''
+    print nam
   }
 
   // Optional wait for approval
 
-  stage ('Terraform Apply') {
-    sh 'terraform apply -no-color create.tfplan'
-  }
+  // stage ('Terraform Apply') {
+  //   sh 'terraform apply -no-color create.tfplan'
+  // }
 
-  stage ('Post Run Tests') {
-    echo "Insert your infrastructure test of choice and/or application validation here."
-    sleep 2
-    sh 'terraform show'
-  }
+  // stage ('Post Run Tests') {
+  //   echo "Insert your infrastructure test of choice and/or application validation here."
+  //   sleep 2
+  //   sh 'terraform show'
+  // }
 
   // stage ('Notification') {
   //   mail from: "saicosan@gmail.com",
