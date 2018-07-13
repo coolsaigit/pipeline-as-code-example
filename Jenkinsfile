@@ -20,7 +20,7 @@ node {
 
   stage ('Terraform Plan') {
     sh 'terraform init'
-    def nam = sh 'terraform plan -no-color -out=create.tfplan | grep "name:" | cut -d":" -f2 | awk '{$1=$1};1''
+    sh 'terraform plan -no-color -out=create.tfplan | grep "name:" | cut -d":" -f2 | awk '{$1=$1};1' > nam' 
     println nam
   }
 
